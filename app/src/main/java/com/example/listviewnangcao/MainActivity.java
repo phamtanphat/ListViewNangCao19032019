@@ -2,6 +2,8 @@ package com.example.listviewnangcao;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,8 +26,19 @@ public class MainActivity extends AppCompatActivity {
         monanArrayList.add(new Monan("Bánh mì",3000,0,R.drawable.banhmy));
         monanArrayList.add(new Monan("Chả chiên",25000,1,R.drawable.cha));
         monanArrayList.add(new Monan("Chả giò",35000,2,R.drawable.chagio));
-        monanArrayList.add(new Monan("Mì cay",45000,0,R.drawable.mycay));
-        monanArrayList.add(new Monan("Ốc",50000,0,R.drawable.oc));
+        monanArrayList.add(new Monan("Mì cay",45000,3,R.drawable.mycay));
+        monanArrayList.add(new Monan("Ốc",50000,4,R.drawable.oc));
 
+
+        monanAdapter = new MonanAdapter(monanArrayList , MainActivity.this);
+        lvMonan.setAdapter(monanAdapter);
+
+        lvMonan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                monanArrayList.add(0,new Monan("Ốc",50000,4,R.drawable.oc));
+                monanAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
