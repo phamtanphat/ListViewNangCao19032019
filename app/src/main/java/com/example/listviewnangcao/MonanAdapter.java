@@ -19,8 +19,6 @@ public class MonanAdapter extends BaseAdapter {
         this.mangmonan = mangmonan;
         this.context = context;
     }
-
-
     @Override
     public int getCount() {
         return mangmonan.size();
@@ -28,7 +26,7 @@ public class MonanAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mangmonan.get(position);
     }
 
     @Override
@@ -38,12 +36,18 @@ public class MonanAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         convertView = layoutInflater.inflate(R.layout.dong_listview_monan,null);
+
         TextView txtTenmonan = convertView.findViewById(R.id.textviewTenmonan);
         TextView txtGiamonan = convertView.findViewById(R.id.textviewGiamonan);
         ImageView imgMonan = convertView.findViewById(R.id.imageviewMonan);
 
-        return null;
+        Monan monan = (Monan) getItem(position);
+        txtTenmonan.setText(monan.getTen());
+        txtGiamonan.setText(monan.getGia() + " đồng");
+        imgMonan.setImageResource(monan.getHinhanh());
+        return convertView;
     }
 }
