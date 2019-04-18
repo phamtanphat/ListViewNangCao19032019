@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         monanArrayList.add(new Monan("Ốc",50000,4,R.drawable.oc));
 
 
-        monanAdapter = new MonanAdapter(monanArrayList , MainActivity.this);
+        monanAdapter = new MonanAdapter(MainActivity.this,android.R.layout.simple_list_item_1,monanArrayList);
         lvMonan.setAdapter(monanAdapter);
 
         lvMonan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
