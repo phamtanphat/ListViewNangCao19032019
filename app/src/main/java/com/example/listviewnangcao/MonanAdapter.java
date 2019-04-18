@@ -20,19 +20,28 @@ public class MonanAdapter extends ArrayAdapter<Monan> {
         super(context, resource, objects);
     }
 
+    class ViewHolder{
+        TextView txtTenmonan,txtGiamonan;
+        ImageView imgMonan;
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        convertView = layoutInflater.inflate(R.layout.dong_listview_monan,null);
-
-        TextView txtTenmonan = convertView.findViewById(R.id.textviewTenmonan);
-        TextView txtGiamonan = convertView.findViewById(R.id.textviewGiamonan);
-        ImageView imgMonan = convertView.findViewById(R.id.imageviewMonan);
-
+        ViewHolder viewHolder = null;
+        if (convertView ==null){
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+            convertView = layoutInflater.inflate(R.layout.dong_listview_monan,null);
+            viewHolder = new ViewHolder();
+            viewHolder.txtTenmonan = convertView.findViewById(R.id.textviewTenmonan);
+            viewHolder.txtGiamonan = convertView.findViewById(R.id.textviewGiamonan);
+            viewHolder.imgMonan = convertView.findViewById(R.id.imageviewMonan);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
         Monan monan = getItem(position);
-        txtTenmonan.setText(monan.getTen());
-        txtGiamonan.setText(monan.getGia() + " đồng");
-        imgMonan.setImageResource(monan.getHinhanh());
+        viewHolder.txtTenmonan.setText(monan.getTen());
+        viewHolder.txtGiamonan.setText(monan.getGia() + " đồng");
+        viewHolder.imgMonan.setImageResource(monan.getHinhanh());
         return convertView;
     }
 }
